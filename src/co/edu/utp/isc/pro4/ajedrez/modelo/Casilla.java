@@ -52,6 +52,8 @@ public class Casilla extends Dibujable {
     public void setFicha(Ficha ficha) {
         this.ficha = ficha;
     }
+    
+ 
 
     @Override
     public String toString() {

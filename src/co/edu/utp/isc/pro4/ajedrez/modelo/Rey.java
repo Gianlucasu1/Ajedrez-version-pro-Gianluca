@@ -5,7 +5,9 @@
  */
 package co.edu.utp.isc.pro4.ajedrez.modelo;
 
+import java.awt.GradientPaint;
 import java.awt.Graphics2D;
+import java.awt.geom.Rectangle2D;
 
 /**
  *
@@ -27,11 +29,25 @@ public class Rey extends Ficha {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-    @Override
-    public void draw(Graphics2D g, float x, float y) {
-        //TODO Dibujar la figura
-    }
-
+   @Override
+        public void draw(Graphics2D g, float x, float y) {
+            g.setPaint(new GradientPaint(x, y,
+                    getColor() == Color.BLANCO ? java.awt.Color.CYAN : java.awt.Color.BLACK,
+                    x + 50, y + 50,
+                    java.awt.Color.WHITE));
+            //Base de ficha
+            g.fill(new Rectangle2D.Double(x+10,y+25,30,5));
+            //Cuerpo de ficha
+            g.fill(new Rectangle2D.Double(x+20,y+10,5,40));
+          
+            g.setPaint(java.awt.Color.BLACK);
+            //Base de ficha
+            g.draw(new Rectangle2D.Double(x+10,y+25,30,5));
+            //Cuerpo de ficha
+            g.draw(new Rectangle2D.Double(x+20,y+10,5,40));
+            
+         
+        }
     
 
 }

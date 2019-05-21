@@ -21,15 +21,44 @@ public class Caballo extends Ficha {
         super(color);
     }
 
-    @Override
-    public void mover(Tablero tablero, Casilla casillaI, Casilla casillaF) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    @Override
-    public void comer() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+     @Override
+        public void mover(Tablero tablero,Casilla casillaI, Casilla casillaF) {
+            boolean ocupada = false;
+            int cI,cF,fI,fF;
+            cI = casillaI.getColumna() - 'A';//x Inicial
+            fI = casillaI.getFila() - 1;//y Inicial
+            cF = casillaF.getColumna() - 'A';//x Final 
+            fF = casillaF.getFila() - 1 ;//y Final
+ 
+            if((fI-fF)*(f1-f2) +(c1-c2)*(c1-c2) == 5){
+                
+                
+                ocupada = casillaC.isOcupada();
+              
+                if(!casillaF.isOcupada()){//Que en la casilla final no haya nada    TIPO 1 (MOVIMIENTO NORMAL)
+                    if(!ocupada){//Si no hay nada en la trayectoria
+                        casillaI.setFichaNull();
+                        super.asociarFichaTablero(this, casillaF);
+                    }
+                    else{
+                        System.out.println("Hay una ficha en la trayectoria");
+                    }
+                }
+                else{//Que en la casilla final haya una ficha                       TIPO 2 (COMER)
+                   if(this.getColor() != casillaF.getFicha().getColor()){//Si la fichaI y la fichaF son de diferente color
+                       this.comer(casillaI,casillaF);
+                   }
+                   else{
+                       System.out.println("Ambas fichas son del mismo color");
+                   }
+                }
+                
+            }
+            else{
+                System.out.println("De esa forma no se mueve el alfil");
+            }
+        }
+    
 
     @Override
     public void draw(Graphics2D g, float x, float y) { 
