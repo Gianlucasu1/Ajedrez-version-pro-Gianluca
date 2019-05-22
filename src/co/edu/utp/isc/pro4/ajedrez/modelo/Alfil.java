@@ -66,8 +66,10 @@
                 casillaComp=casillaC;
                 ocupada = casillaC.isOcupada();
                 while((casillaC.getFila() != casillaF.getFila()) && (casillaC.getColumna() != casillaF.getColumna()) && ocupada==false){
-                    casillaC = tablero.getCasilla(fI,cI);
                     ocupada=casillaC.isOcupada();
+                   casillaC = tablero.getCasilla(fI,cI);
+                 
+               
                     if (casillaF.getColumna() > casillaI.getColumna() && casillaF.getFila() > casillaI.getFila()){
                         cI = cI + 1;
                         fI = fI + 1;
@@ -84,6 +86,7 @@
                         cI = cI + 1;
                         fI = fI - 1;
                     }
+                    
                 }
                 if(!casillaF.isOcupada()){//Que en la casilla final no haya nada    TIPO 1 (MOVIMIENTO NORMAL)
                     if(!ocupada){//Si no hay nada en la trayectoria
