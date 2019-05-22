@@ -8,7 +8,6 @@ package co.edu.utp.isc.pro4.ajedrez.modelo;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.geom.GeneralPath;
-import java.awt.geom.Line2D;
 import java.awt.geom.Rectangle2D;
 
 /**
@@ -30,32 +29,30 @@ public class Caballo extends Ficha {
             cF = casillaF.getColumna() - 'A';//x Final 
             fF = casillaF.getFila() - 1 ;//y Final
  
-            if((fI-fF)*(f1-f2) +(c1-c2)*(c1-c2) == 5){
+            if((fI-fF)*(fI-fF) +(cI-cF)*(cI-cF) == 5){
                 
+                if(!casillaF.isOcupada()){
                 
-                ocupada = casillaC.isOcupada();
-              
-                if(!casillaF.isOcupada()){//Que en la casilla final no haya nada    TIPO 1 (MOVIMIENTO NORMAL)
-                    if(!ocupada){//Si no hay nada en la trayectoria
-                        casillaI.setFichaNull();
-                        super.asociarFichaTablero(this, casillaF);
-                    }
-                    else{
-                        System.out.println("Hay una ficha en la trayectoria");
-                    }
+                casillaI.setFichaNull();
+                super.asociarFichaTablero(this, casillaF);
+                
                 }
-                else{//Que en la casilla final haya una ficha                       TIPO 2 (COMER)
-                   if(this.getColor() != casillaF.getFicha().getColor()){//Si la fichaI y la fichaF son de diferente color
-                       this.comer(casillaI,casillaF);
-                   }
-                   else{
-                       System.out.println("Ambas fichas son del mismo color");
-                   }
+                
+                else {
+                    
+                if((this.getColor() != casillaF.getFicha().getColor())){
+                
+                    this.comer(casillaI,casillaF);
                 }
+                else {
+                    System.out.println("Son del mismo color");
+                }
+                }
+                
                 
             }
             else{
-                System.out.println("De esa forma no se mueve el alfil");
+                System.out.println("De esa forma no se mueve el caballo");
             }
         }
     

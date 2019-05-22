@@ -1,4 +1,10 @@
-    /*
+
+
+
+
+
+
+/*
      * To change this license header, choose License Headers in Project Properties.
      * To change this template file, choose Tools | Templates
      * and open the template in the editor.
@@ -27,6 +33,8 @@
         @Override
         public void mover(Tablero tablero,Casilla casillaI, Casilla casillaF) {
             boolean ocupada = false;
+            boolean validador;
+            int x = 0;
             int cI,cF,fI,fF, restaA, restaB;
             cI = casillaI.getColumna() - 'A';//x Inicial
             fI = casillaI.getFila() - 1;//y Inicial
@@ -35,6 +43,7 @@
             restaA = fI - fF;
             restaB = cI - cF;
             Casilla casillaC;
+            Casilla casillaComp;
             casillaC = casillaI;
             if(Math.abs(restaA) == Math.abs(restaB)){
                 if (casillaF.getColumna() > casillaI.getColumna() && casillaF.getFila() > casillaI.getFila()){
@@ -54,6 +63,7 @@
                     fI = fI - 1;
                 }
                 casillaC = tablero.getCasilla(fI,cI);
+                casillaComp=casillaC;
                 ocupada = casillaC.isOcupada();
                 while((casillaC.getFila() != casillaF.getFila()) && (casillaC.getColumna() != casillaF.getColumna()) && ocupada==false){
                     casillaC = tablero.getCasilla(fI,cI);
@@ -82,15 +92,39 @@
                     }
                     else{
                         System.out.println("Hay una ficha en la trayectoria");
+                        x=1;
                     }
                 }
                 else{//Que en la casilla final haya una ficha                       TIPO 2 (COMER)
-                   if(this.getColor() != casillaF.getFicha().getColor()){//Si la fichaI y la fichaF son de diferente color
+                   
+                    if(casillaComp==casillaF){
+                    if((this.getColor() != casillaF.getFicha().getColor())){//Si la fichaI y la fichaF son de diferente color
                        this.comer(casillaI,casillaF);
                    }
+                   
                    else{
                        System.out.println("Ambas fichas son del mismo color");
                    }
+                }
+                    else {
+                        validador=true;
+                    if(validador==ocupada){
+                    validador=false;
+                    }
+                    else {
+                    validador=true;
+                    }
+                    
+                        if((this.getColor() != casillaF.getFicha().getColor())&& validador==true){
+                        
+                        this.comer(casillaI,casillaF);
+                        
+                        }
+                         else{
+                       System.out.println("Ambas fichas son del mismo color");
+                   }
+                    
+                    }
                 }
                 
             }
