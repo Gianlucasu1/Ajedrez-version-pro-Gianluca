@@ -5,6 +5,7 @@
  */
 package co.edu.utp.isc.pro4.ajedrez.modelo;
 
+import static co.edu.utp.isc.pro4.ajedrez.modelo.Color.BLANCO;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
@@ -21,14 +22,64 @@ public class Peon extends Ficha {
     }
 
     @Override
-    public void mover(Tablero tablero, Casilla casillaI, Casilla casillaF) {
-        //TODO: Mover como peon
-    }
-
-    @Override
-    public void comer() {
-        //TODO: Comer como peon
-    }
+        public void mover(Tablero tablero,Casilla casillaI, Casilla casillaF) {
+            boolean ocupada = false;
+            boolean validador=false;
+            Casilla casillaC;
+            int cI,cF,fI,fF;
+            cI = casillaI.getColumna() - 'A';//x Inicial
+            fI = casillaI.getFila() - 1;//y Inicial
+            cF = casillaF.getColumna() - 'A';//x Final 
+            fF = casillaF.getFila() - 1 ;//y Final
+            
+            
+            if(this.getColor()==BLANCO){
+            
+            if(cI==cF && fF==fI+1){
+                                  if(casillaF.isOcupada()==false){
+                                  casillaI.setFichaNull();
+                                   super.asociarFichaTablero(this, casillaF);
+                                  }
+                                  else { System.out.println("La casilla esta ocupada");}
+                              
+                                  }
+            else if((fI==1) && fF==fI+2 && cI==cF){
+                                  
+                 casillaC = tablero.getCasilla(fI+1, cI);
+                                  if(casillaF.isOcupada()==false && casillaC.isOcupada()==false){
+                                  casillaI.setFichaNull();
+                                   super.asociarFichaTablero(this, casillaF);
+                                  }
+                                  else { System.out.println("La casilla intermedia esta  ocupada");}
+                              
+                                  }
+            
+            }
+            else {
+                if(cI==cF && fF==fI-1){
+                                  if(casillaF.isOcupada()==false){
+                                  casillaI.setFichaNull();
+                                   super.asociarFichaTablero(this, casillaF);
+                                  }
+                                  else { System.out.println("La casilla esta ocupada");}
+                              
+                                  }
+            else if((fI==6) && fF==fI-2 && cI==cF){
+                                  
+                 casillaC = tablero.getCasilla(fI-1, cI);
+                                  if(casillaF.isOcupada()==false && casillaC.isOcupada()==false){
+                                  casillaI.setFichaNull();
+                                   super.asociarFichaTablero(this, casillaF);
+                                  }
+                                  else { System.out.println("La casilla intermedia esta  ocupada");}
+                              
+                                  }
+            
+            }
+            
+        }
+ 
+            
 
     @Override
     public void draw(Graphics2D g, float x, float y) {

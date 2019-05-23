@@ -24,14 +24,147 @@ public class Reina extends Ficha {
     }
 
      @Override
-    public void mover(Tablero tablero, Casilla casillaI, Casilla casillaF) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+        public void mover(Tablero tablero,Casilla casillaI, Casilla casillaF) {
+            boolean ocupada = false;
+            boolean validador;
+            int x = 0;
+            int cI,cF,fI,fF, restaA, restaB;
+            cI = casillaI.getColumna() - 'A';//x Inicial
+            fI = casillaI.getFila() - 1;//y Inicial
+            cF = casillaF.getColumna() - 'A';//x Final 
+            fF = casillaF.getFila() - 1 ;//y Final
+            restaA = fI - fF;
+            restaB = cI - cF;
+            Casilla casillaC;
+            Casilla casillaComp;
+            casillaC = casillaI;
+            if((fI==fF) || (cI==cF) || (Math.abs(fI-fF) == Math.abs(cI-cF))){
+                if (casillaF.getColumna() > casillaI.getColumna() && casillaF.getFila() > casillaI.getFila()){
+                    cI = cI + 1;
+                    fI = fI + 1;
+                }
+                else if(casillaF.getColumna() < casillaI.getColumna() && casillaF.getFila() > casillaI.getFila()){
+                    cI = cI - 1;
+                    fI = fI + 1;
+                }
+                else if(casillaF.getColumna() < casillaI.getColumna() && casillaF.getFila() < casillaI.getFila()){
+                    cI = cI - 1;
+                    fI = fI - 1;
+                }
+                else if(casillaF.getColumna() > casillaI.getColumna() && casillaF.getFila() < casillaI.getFila()){
+                    cI = cI + 1;
+                    fI = fI - 1;
+                }
+                else if (casillaF.getColumna() == casillaI.getColumna() && casillaF.getFila() > casillaI.getFila()){
+                    cI = cI;
+                    fI = fI + 1;
+                }
+                else if(casillaF.getColumna() == casillaI.getColumna() && casillaF.getFila() < casillaI.getFila()){
+                    cI = cI;
+                    fI = fI - 1;
+                }
+                else if(casillaF.getColumna() < casillaI.getColumna() && casillaF.getFila() == casillaI.getFila()){
+                    cI = cI - 1;
+                    fI = fI;
+                }
+                else if(casillaF.getColumna() > casillaI.getColumna() && casillaF.getFila() == casillaI.getFila()){
+                    cI = cI + 1;
+                    fI = fI;
+                }
+                casillaC = tablero.getCasilla(fI,cI);
+                casillaComp=casillaC;
+                ocupada = casillaC.isOcupada();
+                
+                
+                while((((casillaC.getFila() != casillaF.getFila()) && (casillaC.getColumna() != casillaF.getColumna())) || ((casillaC.getFila() != casillaF.getFila()) || (casillaC.getColumna() != casillaF.getColumna()))) && ocupada==false){
+                    ocupada=casillaC.isOcupada();
+                   casillaC = tablero.getCasilla(fI,cI);
+                 
+               
+                    if (casillaF.getColumna() > casillaI.getColumna() && casillaF.getFila() > casillaI.getFila()){
+                        cI = cI + 1;
+                        fI = fI + 1;
+                    }
+                    else if(casillaF.getColumna() < casillaI.getColumna() && casillaF.getFila() > casillaI.getFila()){
+                        cI = cI - 1;
+                        fI = fI + 1;
+                    }
+                    else if(casillaF.getColumna() < casillaI.getColumna() && casillaF.getFila() < casillaI.getFila()){
+                        cI = cI - 1;
+                        fI = fI - 1;
+                    }
+                    else if(casillaF.getColumna() > casillaI.getColumna() && casillaF.getFila() < casillaI.getFila()){
+                        cI = cI + 1;
+                        fI = fI - 1;
+                    }
+                    else if (casillaF.getColumna() == casillaI.getColumna() && casillaF.getFila() > casillaI.getFila()){
+                    cI = cI;
+                    fI = fI + 1;
+                }
+                else if(casillaF.getColumna() == casillaI.getColumna() && casillaF.getFila() < casillaI.getFila()){
+                    cI = cI;
+                    fI = fI - 1;
+                }
+                else if(casillaF.getColumna() < casillaI.getColumna() && casillaF.getFila() == casillaI.getFila()){
+                    cI = cI - 1;
+                    fI = fI;
+                }
+                else if(casillaF.getColumna() > casillaI.getColumna() && casillaF.getFila() == casillaI.getFila()){
+                    cI = cI + 1;
+                    fI = fI;
+                }
+                    
+                }
+                if(!casillaF.isOcupada()){//Que en la casilla final no haya nada    TIPO 1 (MOVIMIENTO NORMAL)
+                    if(!ocupada){//Si no hay nada en la trayectoria
+                        casillaI.setFichaNull();
+                        super.asociarFichaTablero(this, casillaF);
+                    }
+                    else{
+                        System.out.println("Hay una ficha en la trayectoria");
+                        x=1;
+                    }
+                }
+                else{//Que en la casilla final haya una ficha                       TIPO 2 (COMER)
+                   
+                    if(casillaComp==casillaF){
+                    if((this.getColor() != casillaF.getFicha().getColor())){//Si la fichaI y la fichaF son de diferente color
+                       this.comer(casillaI,casillaF);
+                   }
+                   
+                   else{
+                       System.out.println("Ambas fichas son del mismo color");
+                   }
+                }
+                    else {
+                        validador=true;
+                    if(validador==ocupada){
+                    validador=false;
+                    }
+                    else {
+                    validador=true;
+                    }
+                    
+                        if((this.getColor() != casillaF.getFicha().getColor())&& validador==true){
+                        
+                        this.comer(casillaI,casillaF);
+                        
+                        }
+                         else{
+                       System.out.println("Ambas fichas son del mismo color");
+                   }
+                    
+                    }
+                }
+                
+            }
+            else{
+                System.out.println("De esa forma no se mueve el alfil");
+            }
+        }
 
-    @Override
-    public void comer() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+
+    
      @Override
         public void draw(Graphics2D g, float x, float y) {
             g.setPaint(new GradientPaint(x, y,

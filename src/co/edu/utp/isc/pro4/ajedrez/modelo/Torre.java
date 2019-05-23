@@ -44,7 +44,7 @@ public class Torre extends Ficha {
                     cI = cI - 1;
                     fI = fI;
                 }
-                else if(casillaF.getColumna() > casillaI.getColumna() && casillaF.getFila() < casillaI.getFila()){
+                else if(casillaF.getColumna() > casillaI.getColumna() && casillaF.getFila() == casillaI.getFila()){
                     cI = cI + 1;
                     fI = fI;
                 }
@@ -115,7 +115,7 @@ public class Torre extends Ficha {
            }
             
             else{
-                System.out.println("De esa forma no se mueve el alfil");
+                System.out.println("De esa forma no se mueve la torre");
             }
             
     }
