@@ -27,13 +27,100 @@ public class Torre extends Ficha {
             fI = casillaI.getFila() - 1;//y Inicial
             cF = casillaF.getColumna() - 'A';//x Final 
             fF = casillaF.getFila() - 1 ;//y Final
+            Casilla casillaC;
+            Casilla casillaComp;
+            
+            if((fI==fF) || (cI==cF)){
+    
+            if (casillaF.getColumna() == casillaI.getColumna() && casillaF.getFila() > casillaI.getFila()){
+                    cI = cI;
+                    fI = fI + 1;
+                }
+                else if(casillaF.getColumna() == casillaI.getColumna() && casillaF.getFila() < casillaI.getFila()){
+                    cI = cI;
+                    fI = fI - 1;
+                }
+                else if(casillaF.getColumna() < casillaI.getColumna() && casillaF.getFila() == casillaI.getFila()){
+                    cI = cI - 1;
+                    fI = fI;
+                }
+                else if(casillaF.getColumna() > casillaI.getColumna() && casillaF.getFila() < casillaI.getFila()){
+                    cI = cI + 1;
+                    fI = fI;
+                }
+            
+            casillaC=tablero.getCasilla(fI,cI);
+            casillaComp=casillaC;
+            ocupada=casillaC.isOcupada();
+            while(((casillaC.getFila() != casillaF.getFila()) || (casillaC.getColumna() != casillaF.getColumna())) && ocupada==false){
+                    ocupada=casillaC.isOcupada();
+                   casillaC = tablero.getCasilla(fI,cI);
+                 
+               
+                    if (casillaF.getColumna() == casillaI.getColumna() && casillaF.getFila() > casillaI.getFila()){
+                        cI = cI;
+                        fI = fI + 1;
+                    }
+                    else if(casillaF.getColumna() == casillaI.getColumna() && casillaF.getFila() < casillaI.getFila()){
+                        cI = cI;
+                        fI = fI - 1;
+                    }
+                    else if(casillaF.getColumna() < casillaI.getColumna() && casillaF.getFila() == casillaI.getFila()){
+                        cI = cI - 1;
+                        fI = fI;
+                    }
+                    else if(casillaF.getColumna() > casillaI.getColumna() && casillaF.getFila() == casillaI.getFila()){
+                        cI = cI + 1;
+                        fI = fI;
+                    }
+                    
+                }
+            
+            if(casillaF.isOcupada()==false){
+            
+            if(ocupada==false){
+                               casillaI.setFichaNull();
+                               super.asociarFichaTablero(this, casillaF);
+                               }
+            else {
+                System.out.println("Hay una ficha en la trayectoria");
+            }
+            
+            }
+            
+            else {
+                   if(casillaComp==casillaF){
+                                             if(this.getColor() != casillaF.getFicha().getColor())
+                                             {
+                                             this.comer(casillaI,casillaF);
+                                             }
+                                             else { System.out.println("Ambas fichas son del mismo color");}
+                   
+                                             }
+                   else {  
+                       if((this.getColor() != casillaF.getFicha().getColor())&& ocupada==false){
+                        
+                        this.comer(casillaI,casillaF);
+                        
+                        }
+                         else{
+                       System.out.println("Ambas fichas son del mismo color");
+                   }}
+            
+            
+            }
+            
+    
+    
+           }
+            
+            else{
+                System.out.println("De esa forma no se mueve el alfil");
+            }
             
     }
 
-    @Override
-    public void comer() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    
 
     public void draw(Graphics2D g, float x, float y) {
         GeneralPath polyline = new GeneralPath(GeneralPath.WIND_EVEN_ODD, 17);
