@@ -305,7 +305,9 @@ public class FrmAjedrez extends javax.swing.JFrame {
                 txtFin.setText((char) ('A' + col - 1) + Integer.toString(row));
                 jugadaInicial = true;
                 try {
+               
                 juego.moverFicha(txtInicio.getText(),txtFin.getText());
+                
                 }
                 catch (MovimientoNoValidoException ex){
                 JOptionPane.showMessageDialog(this,ex.getMessage());

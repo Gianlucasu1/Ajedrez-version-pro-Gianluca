@@ -146,8 +146,12 @@ public class Ajedrez {
     }
     
    public void moverFicha(String inicio, String fin) throws MovimientoNoValidoException {
-        jugadores[turno].jugar(tablero.getCasilla(inicio),tablero.getCasilla(fin));
+        
+       jugadores[turno].jugar(tablero.getCasilla(inicio),tablero.getCasilla(fin),turno);
+        
         mostrarTablero();
+        cambioTurno();
+        
     }
     private void mostrarTablero() {
         pnlTablero.updateUI();

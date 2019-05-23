@@ -6,6 +6,8 @@
 package co.edu.utp.isc.pro4.ajedrez.modelo;
 
 import co.edu.utp.isc.pro4.ajedrez.controlador.Ajedrez;
+import static co.edu.utp.isc.pro4.ajedrez.modelo.Color.BLANCO;
+import static co.edu.utp.isc.pro4.ajedrez.modelo.Color.NEGRO;
 
 /**
  *
@@ -20,13 +22,39 @@ public class Jugador {
         this.nombre = nombre;
     }
 
-    public void jugar(Casilla casillaI, Casilla casillaF) {
+    public void jugar(Casilla casillaI, Casilla casillaF,int turno) {
+       if(casillaI.getFicha()!=null) {
+       if(turno==0){
         if(casillaI.isOcupada()){
             Ficha f;
-            f = casillaI.getFicha();    
-            f.mover(ajedrez.getTablero(), casillaI, casillaF);
+            
+            f = casillaI.getFicha();  
+           Color color1=f.getColor();
+            if(color1==BLANCO){
+            f.mover(ajedrez.getTablero(), casillaI, casillaF);}
+            else {System.out.println("No es su turno");
+            ajedrez.cambioTurno();
+            
+            }
+        }}
+       else {
+           Ficha f;
+            
+            f = casillaI.getFicha();  
+           Color color1=f.getColor();
+            if(color1==NEGRO){
+            f.mover(ajedrez.getTablero(), casillaI, casillaF);}
+            else {System.out.println("No es su turno");
+            ajedrez.cambioTurno();
+            }
         }
+       }
+       else {
+       ajedrez.cambioTurno();
+       
+       }
     }
+    
 
     public void setAjedrez(Ajedrez ajedrez) {
         this.ajedrez = ajedrez;
