@@ -6,6 +6,7 @@
 package co.edu.utp.isc.pro4.ajedrez.modelo;
 
 import static co.edu.utp.isc.pro4.ajedrez.modelo.Color.BLANCO;
+import static co.edu.utp.isc.pro4.ajedrez.modelo.Color.NEGRO;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
 import java.awt.geom.Ellipse2D;
@@ -53,6 +54,14 @@ public class Peon extends Ficha {
                                   else { System.out.println("La casilla intermedia esta  ocupada");}
                               
                                   }
+            else if(fF==fI+1 &&(cF==cI+1 || cF==cI-1)){
+            
+            if(casillaF.isOcupada()==true && casillaF.getFicha().getColor()==NEGRO){
+            this.comer(casillaI,casillaF);   
+            }
+            else {System.out.println("Ambas fichas son del mismo color");}
+            
+            }
             
             }
             else {
@@ -74,6 +83,15 @@ public class Peon extends Ficha {
                                   else { System.out.println("La casilla intermedia esta  ocupada");}
                               
                                   }
+                else if(fF==fI-1 &&(cF==cI+1 || cF==cI-1)){
+            
+            if(casillaF.isOcupada()==true && casillaF.getFicha().getColor()==BLANCO){
+            this.comer(casillaI,casillaF);   
+            }
+            else {System.out.println("Ambas fichas son del mismo color");}
+            
+            }
+            
             
             }
             
