@@ -81,6 +81,7 @@ public class Torre extends Ficha {
             if(ocupada==false){
                                casillaI.setFichaNull();
                                super.asociarFichaTablero(this, casillaF);
+                               
                                }
             else {
                 System.out.println("Hay una ficha en la trayectoria");
@@ -93,6 +94,7 @@ public class Torre extends Ficha {
                                              if(this.getColor() != casillaF.getFicha().getColor())
                                              {
                                              this.comer(casillaI,casillaF);
+                                             
                                              }
                                              else { System.out.println("Ambas fichas son del mismo color");}
                    
@@ -102,6 +104,7 @@ public class Torre extends Ficha {
                         
                         this.comer(casillaI,casillaF);
                         
+                      
                         }
                          else{
                        System.out.println("Ambas fichas son del mismo color");
@@ -117,6 +120,7 @@ public class Torre extends Ficha {
             else{
                 System.out.println("De esa forma no se mueve la torre");
             }
+        
             
     }
 

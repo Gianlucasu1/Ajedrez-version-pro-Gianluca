@@ -40,6 +40,7 @@ public class Peon extends Ficha {
                                   if(casillaF.isOcupada()==false){
                                   casillaI.setFichaNull();
                                    super.asociarFichaTablero(this, casillaF);
+                                   
                                   }
                                   else { System.out.println("La casilla esta ocupada");}
                               
@@ -50,6 +51,7 @@ public class Peon extends Ficha {
                                   if(casillaF.isOcupada()==false && casillaC.isOcupada()==false){
                                   casillaI.setFichaNull();
                                    super.asociarFichaTablero(this, casillaF);
+                                   
                                   }
                                   else { System.out.println("La casilla intermedia esta  ocupada");}
                               
@@ -57,7 +59,8 @@ public class Peon extends Ficha {
             else if(fF==fI+1 &&(cF==cI+1 || cF==cI-1)){
             
             if(casillaF.isOcupada()==true && casillaF.getFicha().getColor()==NEGRO){
-            this.comer(casillaI,casillaF);   
+            this.comer(casillaI,casillaF);  
+            
             }
             else {System.out.println("Ambas fichas son del mismo color");}
             
@@ -69,6 +72,7 @@ public class Peon extends Ficha {
                                   if(casillaF.isOcupada()==false){
                                   casillaI.setFichaNull();
                                    super.asociarFichaTablero(this, casillaF);
+                                   
                                   }
                                   else { System.out.println("La casilla esta ocupada");}
                               
@@ -79,6 +83,7 @@ public class Peon extends Ficha {
                                   if(casillaF.isOcupada()==false && casillaC.isOcupada()==false){
                                   casillaI.setFichaNull();
                                    super.asociarFichaTablero(this, casillaF);
+                                   
                                   }
                                   else { System.out.println("La casilla intermedia esta  ocupada");}
                               
@@ -87,6 +92,7 @@ public class Peon extends Ficha {
             
             if(casillaF.isOcupada()==true && casillaF.getFicha().getColor()==BLANCO){
             this.comer(casillaI,casillaF);   
+            
             }
             else {System.out.println("Ambas fichas son del mismo color");}
             
@@ -94,6 +100,7 @@ public class Peon extends Ficha {
             
             
             }
+            
             
         }
  

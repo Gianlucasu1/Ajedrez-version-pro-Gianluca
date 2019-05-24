@@ -19,6 +19,14 @@ public abstract class Ficha extends Dibujable {
     public Ficha(Color color) {
         this.color = color;
     }
+    public boolean validador(Casilla casillaF,Ficha ficha){
+        if(casillaF.getFicha()==ficha){
+        return true;
+        }
+        else{
+        return false;}
+        
+    }
 
     public abstract void mover(Tablero tablero, Casilla casillaI, Casilla casillaF);
 
@@ -37,6 +45,15 @@ public abstract class Ficha extends Dibujable {
 
     public Color getColor() {
         return color;
+    }
+    
+    public boolean validarMov(int x){
+    
+    if(x==1){
+    return true;
+    }
+    else{
+        return false;}
     }
     public void asociarFichaTablero(Ficha ficha,Casilla casilla){
         ficha.setCasilla(casilla);

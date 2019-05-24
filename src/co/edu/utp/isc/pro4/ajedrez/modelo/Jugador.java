@@ -49,8 +49,8 @@ public class Jugador {
             }
         }
        }
-       else {
-       ajedrez.cambioTurno();
+       else if(casillaI.getFicha()==null && casillaF.getFicha()==null) {
+           ajedrez.cambioTurno();
        
        }
     }

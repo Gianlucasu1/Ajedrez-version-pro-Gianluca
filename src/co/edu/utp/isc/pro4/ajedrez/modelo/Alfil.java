@@ -34,6 +34,7 @@
         public void mover(Tablero tablero,Casilla casillaI, Casilla casillaF) {
             boolean ocupada = false;
             boolean validador;
+            boolean y;
             int x = 0;
             int cI,cF,fI,fF, restaA, restaB;
             cI = casillaI.getColumna() - 'A';//x Inicial
@@ -134,6 +135,7 @@
             else{
                 System.out.println("De esa forma no se mueve el alfil");
             }
+            y=validador(casillaF,this);
         }
 
         @Override
